@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>omv新建用户ssh登录问题 | 行走的康康</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 6.1.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">omv新建用户ssh登录问题</h1><a id="logo" href="/.">行走的康康</a><p class="description">静下心来,不要浮躁</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">omv新建用户ssh登录问题</h1><div class="post-meta">2020-09-12<span> | </span><span class="category"><a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 270</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 1</span><span class="post-meta-item-text"> 分钟</span></span></span></div><div class="post-content"><p>OMV新建用户遇到的一些问题，有关OMV的相关介绍，请查看:</p>
+<p><a target="_blank" rel="noopener" href="https://draapho.github.io/2021/03/31/2109-nuc-omv/">https://draapho.github.io/2021/03/31/2109-nuc-omv/</a></p>
+<h1 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h1><ul>
+<li><p>方法一：使用dash控制面板</p>
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-09/1223_2907-zFEHAkhF4zrW3km2.jpg" style="zoom:200%;" /> 
+
+</li>
+<li><p>方法二；使用useradd命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -s /bin/bash pub</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="bash和profile相关知识"><a href="#bash和profile相关知识" class="headerlink" title="bash和profile相关知识"></a>bash和profile相关知识</h1><ul>
+<li><p>引用地址：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://wido.me/sunteya/understand-bashrc-and-profile">https://wido.me/sunteya/understand-bashrc-and-profile</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c4946024b946">https://www.jianshu.com/p/c4946024b946</a></p>
+</blockquote>
+</li>
+<li><p>login shell 和 no login shell</p>
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-09/1223_3347-kkjuPPBJEw17jWnL.jpg" style="zoom:200%;" /> 
+
+</li>
+<li><p>bash和profile的区别<br><img src="https://nas.littlekang.xyz:9000/markdown/2020-09/1223_3549-iAkr3fiYRh8gCKbJ.jpg"></p>
+</li>
+</ul>
+<h1 id="拷贝root用户配置文件"><a href="#拷贝root用户配置文件" class="headerlink" title="拷贝root用户配置文件"></a>拷贝root用户配置文件</h1><ul>
+<li><p>root ssh登录拷贝</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp /root/.bashrc /home/xxx/</span><br><span class="line">cp /root/.profile /home/xxx/</span><br><span class="line">chown xxx .bashrc .profile</span><br><span class="line">chgrp xxx .bashrc .profile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：<code>.profile</code>文件中配置如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">~/.profile: executed by Bourne-compatible login shells.</span></span><br><span class="line">if [ &quot;$BASH&quot; ]; then</span><br><span class="line">  if [ -f ~/.bashrc ]; then</span><br><span class="line">    . ~/.bashrc</span><br><span class="line">  fi</span><br><span class="line">fi</span><br><span class="line">mesg n || true</span><br></pre></td></tr></table></figure>
+<p>这个脚本中的 <code>$BASH</code>判断用户使用的shell是否是bash shell,所以如果创建时没有选对，可以通过<code>/etc/passwd</code>修改</p>
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-09/1223_4100-DJwRk8Jhq8dmBY3M.jpg" style="zoom:200%;" /></li>
+</ul>
+<h1 id="关于新建用户不能shell登录问题"><a href="#关于新建用户不能shell登录问题" class="headerlink" title="关于新建用户不能shell登录问题"></a>关于新建用户不能shell登录问题</h1><ul>
+<li><p>原因：sshd配置文件中对可登录的user group做了限定<br>&#x2F;etc&#x2F;ssh&#x2F;sshd_config中：</p>
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-09/1223_4624-iVQ2NTr0Thy8LQWv.jpg" style="zoom:200%;" /> 
+
+</li>
+<li><p>解决方法：修改用户所在组，将用户添加到ssh组； 或修改sshd_config，允许新user group;</p>
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-09/1223_4403-3TF0NCMtNCuecyNE.jpg" style="zoom:200%;" /></li>
+</ul>
+<p>2020-09-12 23:46:35 星期六</p>
+</div><div class="tags"><a href="/tags/nas/"><i class="fa fa-tag"></i>nas</a><a href="/tags/omv/"><i class="fa fa-tag"></i>omv</a><a href="/tags/ssh/"><i class="fa fa-tag"></i>ssh</a></div><div class="post-nav"><a class="pre" href="/article/32140/">C++如何导出dll</a><a class="next" href="/article/60761/">omv+minio+picuploader图床搭建</a></div><script src="https://utteranc.es/client.js" repo="echomlv/blog_comments" issue-term="title" theme="github-light" crossorigin="anonymous" async> </script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="toc-number">1.</span> <span class="toc-text">新建用户</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bash%E5%92%8Cprofile%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">2.</span> <span class="toc-text">bash和profile相关知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%B7%E8%B4%9Droot%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">拷贝root用户配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%96%B0%E5%BB%BA%E7%94%A8%E6%88%B7%E4%B8%8D%E8%83%BDshell%E7%99%BB%E5%BD%95%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">关于新建用户不能shell登录问题</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">行走的康康.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="246,246,246" opacity="0.5" zIndex="-2" count="50" src="//cdn.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

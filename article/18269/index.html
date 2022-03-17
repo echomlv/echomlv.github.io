@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Typoro PicGo MarkDown协同工作 | 行走的康康</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 6.1.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Typoro PicGo MarkDown协同工作</h1><a id="logo" href="/.">行走的康康</a><p class="description">静下心来,不要浮躁</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Typoro PicGo MarkDown协同工作</h1><div class="post-meta">2020-02-13<span> | </span><span class="category"><a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 726</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 2</span><span class="post-meta-item-text"> 分钟</span></span></span></div><div class="post-content"><p>Tyora 和 PicGo图床的协同工作，PicGo图床需要借助于其他VPS或者对象存储，</p>
+<p>使用github因国内网络环境，很不稳定。</p>
+<span id="more"></span>
+
+<h1 id="Tyora简介"><a href="#Tyora简介" class="headerlink" title="Tyora简介"></a>Tyora简介</h1><ul>
+<li><p>官网：<a target="_blank" rel="noopener" href="https://typora.io/">https://typora.io/</a></p>
+</li>
+<li><p>Typora 是一款简单、高效而且非常优雅的 Markdown 编辑器，它提供了一种所见即所得的全新的 Markdown 写作体验。</p>
+<p>Typora 把源码编辑和效果预览两者合二为一，在输入 Markdown 代码的时候即时生成预览效果。</p>
+<p>Typora 是目前互联网上最受欢迎的 Markdown 编辑器之一。</p>
+</li>
+<li><p>Tyora快捷键</p>
+<ul>
+<li>段落<img src="https://cdn.jsdelivr.net/gh/littlekang-code/kangimages/imgs/20200213002205.png" style="zoom:200%;" /></li>
+<li>格式<img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200213002455.png" style="zoom:200%;" /></li>
+</ul>
+</li>
+</ul>
+<h1 id="Pandoc文档格式转化"><a href="#Pandoc文档格式转化" class="headerlink" title="Pandoc文档格式转化"></a>Pandoc文档格式转化</h1><ul>
+<li>官网 <a target="_blank" rel="noopener" href="https://pandoc.org/">https://pandoc.org/</a></li>
+<li>简介：</li>
+</ul>
+<p><strong>Pandoc</strong>是一个标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。<br>Typora 的文件导入&#x2F;导出功能使用 Pandoc 把 Markdown 源码转换成不同的文件格式，所以我们如果想使用文件导入&#x2F;导出功能，必须先安装 Pandoc。<br>如果不安装 Pandoc，Typora 只支持导出 HTML 和 PDF 格式的文件。<br>如果安装了 Pandoc ：<br>Typora 支持的导入文件格式: .docx, .latex, .tex, .ltx, .rst, .rest, .org, .wiki, .dokuwiki, .textile, .opml, .epub.<br>Typora 支持的导出文件格式 : HTML, PDF, Docx, odt, rtf, Epub, LaTeX, Media Wiki,Image.</p>
+<ul>
+<li>安装方式：<br>STEP 1. 打开下载页面：<a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc/releases/latest">https://github.com/jgm/pandoc/releases/latest</a><br>STEP 2. 下载最新的安装包：pandoc-版本号.msi<br>STEP 3. 双击后按照提示一步步安装</li>
+</ul>
+<h1 id="PicGo图床"><a href="#PicGo图床" class="headerlink" title="PicGo图床"></a>PicGo图床</h1><ul>
+<li><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a></p>
+</li>
+<li><p>简介：<br>PicGo: 一个用于快速上传图片并获取图片URL链接的工具<br>PicGo 本体支持如下图床：</p>
+<ul>
+<li>微博图床 v1.0 微博图床从 2019 年 4 月开始进行防盗链，不建议继续使用</li>
+<li>七牛图床 v1.0</li>
+<li>腾讯云 COS v4\v5版本 v1.1 &amp; v1.5.0</li>
+<li>又拍云 v1.2.0</li>
+<li>GitHub v1.5.0</li>
+<li>SM.MS v1.5.1 由于官方不再支持V1版本，暂时请使用smms-user插件</li>
+<li>阿里云 OSS v1.6.0</li>
+<li>Imgur v1.6.0</li>
+</ul>
+</li>
+<li><p>特色功能</p>
+<ul>
+<li>支持拖拽图片上传</li>
+<li>支持快捷键上传剪贴板里第一张图片</li>
+<li>Windows和macOS支持右键图片文件通过菜单上传 (v2.1.0+)</li>
+<li>上传图片后自动复制链接到剪贴板</li>
+<li>支持自定义复制到剪贴板的链接格式</li>
+<li>支持修改快捷键，默认快速上传快捷键：<code>command+shift+p</code>（macOS）| <code>control+shift+p</code>（Windows\Linux)</li>
+<li>支持插件系统，已有插件支持Gitee、青云等第三方图床<ul>
+<li>更多第三方插件以及使用了 PicGo 底层的应用可以在 <a target="_blank" rel="noopener" href="https://github.com/PicGo/Awesome-PicGo">Awesome-PicGo</a> 找到。欢迎贡献！</li>
+</ul>
+</li>
+<li>支持通过发送HTTP请求调用 PicGo 上传（v2.2.0+)</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/45ff441ac0d6">Typora：简单高效的 Markdown 编辑器</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a0bf28d7f2fd">Typora + PicGo MarkDown完美组合</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/44c8aaa9cda1">Typora - 不要太棒的Markdown编辑器</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lc1203/p/ac5d44992d9c5f84bf3383d15aff40c2.html">高效且优雅的笔记记录：为知笔记+Typora+图床</a><br><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo">Picgo github readme</a></p>
+</blockquote>
+</div><div class="tags"><a href="/tags/markdown/"><i class="fa fa-tag"></i>markdown</a></div><div class="post-nav"><a class="pre" href="/article/62981/">OpenWrt软件包创建</a><a class="next" href="/article/23610/">hexo cmd</a></div><script src="https://utteranc.es/client.js" repo="echomlv/blog_comments" issue-term="title" theme="github-light" crossorigin="anonymous" async> </script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Tyora%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Tyora简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pandoc%E6%96%87%E6%A1%A3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">Pandoc文档格式转化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PicGo%E5%9B%BE%E5%BA%8A"><span class="toc-number">3.</span> <span class="toc-text">PicGo图床</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%BC%95%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">参考引用</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">行走的康康.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="246,246,246" opacity="0.5" zIndex="-2" count="50" src="//cdn.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>omv+minio+picuploader图床搭建 | 行走的康康</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 6.1.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">omv+minio+picuploader图床搭建</h1><a id="logo" href="/.">行走的康康</a><p class="description">静下心来,不要浮躁</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">omv+minio+picuploader图床搭建</h1><div class="post-meta">2020-08-28<span> | </span><span class="category"><a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7/">软件工具</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 1k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 4</span><span class="post-meta-item-text"> 分钟</span></span></span></div><div class="post-content"><p>一直想自己搭建一个图床，数据放在自己这里才是最安全的；<br>自从咸鱼淘了一个矿难留下来的板子，根据网上的教程搭建了nas，<br>然后在网上找到了这个方案，有一些些繁琐，搭建好后使用Markdown还是很方便。</p>
+<h1 id="OMV-中配置MinIO服务端"><a href="#OMV-中配置MinIO服务端" class="headerlink" title="OMV 中配置MinIO服务端"></a>OMV 中配置MinIO服务端</h1><h2 id="MinIO简介"><a href="#MinIO简介" class="headerlink" title="MinIO简介"></a>MinIO简介</h2><p><strong>MinIO</strong> 是一个基于Apache License v2.0<strong>开源协议的对象存储服务</strong>。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器&#x2F;虚拟机镜像等，而一个对象文件可以是任意大小，从几kb到最大5T不等。</p>
+<p>MinIO是一个非常轻量的服务,可以很简单的和其他应用的结合，类似 NodeJS, Redis 或者 MySQL。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.min.io/cn/minio-quickstart-guide.html">https://docs.min.io/cn/minio-quickstart-guide.html</a></p>
+</blockquote>
+<h2 id="本文使用环境"><a href="#本文使用环境" class="headerlink" title="本文使用环境"></a>本文使用环境</h2><ul>
+<li>联想粒子云</li>
+<li>Armbian Stretch with Linux 5.4.2-rockchip64</li>
+<li>OMV</li>
+<li>Docker</li>
+</ul>
+<h2 id="Docker中安装部署MinIO-Server"><a href="#Docker中安装部署MinIO-Server" class="headerlink" title="Docker中安装部署MinIO Server"></a>Docker中安装部署MinIO Server</h2><h3 id="minio安装"><a href="#minio安装" class="headerlink" title="minio安装"></a>minio安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull minio/minio:RELEASE.2020-08-16T18-39-38Z-arm64</span><br></pre></td></tr></table></figure>
+
+<h3 id="Docker中部署minio"><a href="#Docker中部署minio" class="headerlink" title="Docker中部署minio"></a>Docker中部署minio</h3><img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2900_2751-KB65bR90UA52zeDu.png"   style="zoom:150%;" />
+
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2020-08-29-00-22-50-M3bEQvHUS6bSgVOX.png" style="zoom: 200%;" />
+
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2901_2436-l8cEhuSGB6zB5zI6.png"   style="zoom: 200%;" />
+
+
+
+<h3 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.hfge.net/privatecloud/typora-minio.html">https://www.hfge.net/privatecloud/typora-minio.html</a><br><a target="_blank" rel="noopener" href="https://docs.min.io/docs/minio-docker-quickstart-guide">https://docs.min.io/docs/minio-docker-quickstart-guide</a></p>
+</blockquote>
+<h2 id="MinIO-Server配置"><a href="#MinIO-Server配置" class="headerlink" title="MinIO Server配置"></a>MinIO Server配置</h2><p>你可以通过 <code>http://NAS的IP:9000</code> 访问到minIO的登录页面，默认账号 <code>minioadmin</code> ， <code>minioadmin</code> </p>
+<ul>
+<li>新建仓库， 修改权限为public可读可写：</li>
+</ul>
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2902_1221-3yEXiciEibldUkhM.png" style="zoom:150%;" />
+
+
+
+<ul>
+<li><p>检查修改access key</p>
+<p>在映射文件夹下：<code>xxx/data/.minio.sys/config/config.json</code></p>
+<p>检查修改：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;credentials&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;_&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;access_key&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;adminabcdefg&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;secret_key&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ABCDEFG&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="PicUploader环境配置"><a href="#PicUploader环境配置" class="headerlink" title="PicUploader环境配置"></a>PicUploader环境配置</h1><h2 id="PicUploader简介"><a href="#PicUploader简介" class="headerlink" title="PicUploader简介"></a>PicUploader简介</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/xiebruce/PicUploader">https://github.com/xiebruce/PicUploader</a></p>
+</blockquote>
+<p><strong>PicUploader</strong> 是一个用php编写的图床工具，它能帮助你快速上传你的图片到云图床，并自动返回Markdown格式链接到剪贴板。配置完成后，要获取一个可用于markdown的图片外链只需要：</p>
+<ul>
+<li><strong>方式一：</strong> 右击电脑本地任意格式文件→点击<code>你的自定义上传菜单</code>→系统通知文件上传成功→到Markdown编辑器中粘贴！</li>
+<li><strong>方式二：</strong> 截图并点击复制到剪贴板→按快捷键→系统通知图片上传成功→到Markdown编辑器中粘贴！</li>
+<li><strong>方式三：</strong> 右击网页中的图片→点击<code>复制图片</code>→按上传快捷键→系统弹出上传成功通知→到Markdown编辑器中粘贴！</li>
+<li><strong>方式四：</strong> 使用网页版上传，包括拖放上传(支持多文件)、复制本地图片文件后粘贴上传、截图后粘贴上传、复制网页上的图片后粘贴上传、点击上传按钮选择图片后上传(支持多文件)。</li>
+</ul>
+<h2 id="PhpStudy环境安装"><a href="#PhpStudy环境安装" class="headerlink" title="PhpStudy环境安装"></a>PhpStudy环境安装</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.xp.cn/">https://www.xp.cn/</a></p>
+</blockquote>
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2901_5800-DlaMd4axuawtdsTB.png" style="zoom:150%;" />
+
+
+
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2901_5906-bgCE0sNtn9EyWwUs.png" style="zoom:150%;" />
+
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2901_5947-0KzwZN7RPAsApuhb.png" style="zoom:150%;" />
+
+<p>修改网站首页为：</p>
+<p><code>index dashboard.php; try_files $uri $uri/ index.php$is_args$args</code></p>
+<p>完整vhost配置文件如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">server <span class="punctuation">&#123;</span></span><br><span class="line">        listen        <span class="number">80</span>;</span><br><span class="line">        server_name  dash.picuploader.com;</span><br><span class="line">        root   <span class="string">&quot;D:/phpstudy_pro/WWW/PicUploader&quot;</span>;</span><br><span class="line">        location / <span class="punctuation">&#123;</span></span><br><span class="line">            index index dashboard.php; try_files $uri $uri/ index.php$is_args$args;</span><br><span class="line">            error_page <span class="number">400</span> /error/<span class="number">400.</span>html;</span><br><span class="line">            error_page <span class="number">403</span> /error/<span class="number">403.</span>html;</span><br><span class="line">            error_page <span class="number">404</span> /error/<span class="number">404.</span>html;</span><br><span class="line">            error_page <span class="number">500</span> /error/<span class="number">500.</span>html;</span><br><span class="line">            error_page <span class="number">501</span> /error/<span class="number">501.</span>html;</span><br><span class="line">            error_page <span class="number">502</span> /error/<span class="number">502.</span>html;</span><br><span class="line">            error_page <span class="number">503</span> /error/<span class="number">503.</span>html;</span><br><span class="line">            error_page <span class="number">504</span> /error/<span class="number">504.</span>html;</span><br><span class="line">            error_page <span class="number">505</span> /error/<span class="number">505.</span>html;</span><br><span class="line">            error_page <span class="number">506</span> /error/<span class="number">506.</span>html;</span><br><span class="line">            error_page <span class="number">507</span> /error/<span class="number">507.</span>html;</span><br><span class="line">            error_page <span class="number">509</span> /error/<span class="number">509.</span>html;</span><br><span class="line">            error_page <span class="number">510</span> /error/<span class="number">510.</span>html;</span><br><span class="line">            include D<span class="punctuation">:</span>/phpstudy_pro/WWW/PicUploader/nginx.htaccess;</span><br><span class="line">            autoindex  off;</span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">        location ~ \.php(.*)$ <span class="punctuation">&#123;</span></span><br><span class="line">            fastcgi_pass   <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="punctuation">:</span><span class="number">9000</span>;</span><br><span class="line">            fastcgi_index  index.php;</span><br><span class="line">            fastcgi_split_path_info  ^((?U).+\.php)(/?.+)$;</span><br><span class="line">            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">            fastcgi_param  PATH_INFO  $fastcgi_path_info;</span><br><span class="line">            fastcgi_param  PATH_TRANSLATED  $document_root$fastcgi_path_info;</span><br><span class="line">            include        fastcgi_params;</span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="PicUploader本地部署"><a href="#PicUploader本地部署" class="headerlink" title="PicUploader本地部署"></a>PicUploader本地部署</h2><ul>
+<li><p>拉取源码至<code>x:\phpstudy_pro\WWW</code>目录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/xiebruce/PicUploader.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改host文件：</p>
+<p><code>127.0.0.1       dash.picuploader.com</code></p>
+</li>
+<li><p>通过<code>ash.picuploader.com</code>访问控制台：</p>
+<p>通用配置：</p>
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2902_0729-OMtJQZre40HNF4Ww.png" style="zoom:150%;" />
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2902_5009-oT0fWVTOe7cgRnkb.png" style="zoom:150%;" />
+
+<p>MinIO配置：</p>
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2902_1132-11WZhj0OTJi22M0p.png" style="zoom:150%;" /></li>
+</ul>
+<h2 id="windows右键菜单上传配置"><a href="#windows右键菜单上传配置" class="headerlink" title="windows右键菜单上传配置"></a>windows右键菜单上传配置</h2><img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2903_2001-G0qnuO1vFBI8kl2S.png" style="zoom: 200%;" />
+
+
+
+
+
+<h2 id="windows快捷键上传"><a href="#windows快捷键上传" class="headerlink" title="windows快捷键上传"></a>windows快捷键上传</h2><p>使用winhostkey:</p>
+<p><a target="_blank" rel="noopener" href="https://directedge.us/content/winhotkey">https://directedge.us/content/winhotkey</a></p>
+<ul>
+<li>When I press these keys: 勾选<code>Alt</code>和<code>Ctrl</code></li>
+<li>Along with the key: <code>U</code>,这一步跟前一步加起来表示把快捷键设置为<code>Ctrl+Alt+U</code></li>
+<li>点击右下角的<code>Advanced...</code></li>
+<li>Launch which application: <code>D:\phpstudy_pro\Extensions\php\php7.3.4nts\php.exe</code></li>
+<li>Provide application parameters here: 固定填<code>index.php --type=alfred</code></li>
+<li>Start the application at this folder: <code>D:\phpstudy_pro\WWW\PicUploader</code></li>
+<li>Display the window: <code>Minimized</code></li>
+</ul>
+<img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2902_2454-YCT95YOgG8PRBS87.png" style="zoom:150%;" />
+
+<h1 id="Typora协同工作"><a href="#Typora协同工作" class="headerlink" title="Typora协同工作"></a>Typora协同工作</h1><img src="https://nas.littlekang.xyz:9000/markdown/2020-08/2902_2635-l9CExv5vtBHP3W9z.png" style="zoom:150%;" />
+
+<p>自定义命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\phpstudy_pro\Extensions\php\php7.3.4nts\php.exe D:\phpstudy_pro\WWW\PicUploader\index.php --type=typora</span><br></pre></td></tr></table></figure>
+
+
+
+</div><div class="tags"><a href="/tags/nas/"><i class="fa fa-tag"></i>nas</a><a href="/tags/minio/"><i class="fa fa-tag"></i>minio</a></div><div class="post-nav"><a class="pre" href="/article/35660/">omv新建用户ssh登录问题</a><a class="next" href="/article/4223/">SQLite学习笔记</a></div><script src="https://utteranc.es/client.js" repo="echomlv/blog_comments" issue-term="title" theme="github-light" crossorigin="anonymous" async> </script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OMV-%E4%B8%AD%E9%85%8D%E7%BD%AEMinIO%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">OMV 中配置MinIO服务端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MinIO%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">MinIO简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E4%BD%BF%E7%94%A8%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.</span> <span class="toc-text">本文使用环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E4%B8%AD%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2MinIO-Server"><span class="toc-number">1.3.</span> <span class="toc-text">Docker中安装部署MinIO Server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#minio%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.1.</span> <span class="toc-text">minio安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E4%B8%AD%E9%83%A8%E7%BD%B2minio"><span class="toc-number">1.3.2.</span> <span class="toc-text">Docker中部署minio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%BC%95%E7%94%A8"><span class="toc-number">1.3.3.</span> <span class="toc-text">参考引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MinIO-Server%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.</span> <span class="toc-text">MinIO Server配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PicUploader%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">PicUploader环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PicUploader%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">PicUploader简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PhpStudy%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">PhpStudy环境安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PicUploader%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2"><span class="toc-number">2.3.</span> <span class="toc-text">PicUploader本地部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windows%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E4%B8%8A%E4%BC%A0%E9%85%8D%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text">windows右键菜单上传配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windows%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%B8%8A%E4%BC%A0"><span class="toc-number">2.5.</span> <span class="toc-text">windows快捷键上传</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Typora%E5%8D%8F%E5%90%8C%E5%B7%A5%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">Typora协同工作</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">行走的康康.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="246,246,246" opacity="0.5" zIndex="-2" count="50" src="//cdn.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

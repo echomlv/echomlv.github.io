@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>OpenWrt软件包创建 | 行走的康康</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 6.1.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">OpenWrt软件包创建</h1><a id="logo" href="/.">行走的康康</a><p class="description">静下心来,不要浮躁</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">OpenWrt软件包创建</h1><div class="post-meta">2020-02-17<span> | </span><span class="category"><a href="/categories/OpenWrt/">OpenWrt</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 2.4k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 9</span><span class="post-meta-item-text"> 分钟</span></span></span></div><div class="post-content"><p>OpenWrt官方Wiki</p>
+<img src="https://nas.littlekang.xyz:9000/markdown/2022-03/1719_2129-SMZspGY1muMHeBfo.png" alt="image-20220317192129827" style="zoom:200%;" />
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://openwrt.org/docs/guide-developer/packages">https://openwrt.org/docs/guide-developer/packages</a></p>
+</blockquote>
+<h1 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h1><img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200217214719.png" style="zoom:200%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200217214930.png" style="zoom:200%;" />
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://lingxiankong.github.io/2014-01-06-linux-install.html">https://lingxiankong.github.io/2014-01-06-linux-install.html</a></p>
+</blockquote>
+<h1 id="Openwrt软件源码包的结构"><a href="#Openwrt软件源码包的结构" class="headerlink" title="Openwrt软件源码包的结构"></a>Openwrt软件源码包的结构</h1><ul>
+<li>Makefile(必选)</li>
+<li>提供了下载、编译、安装的步骤</li>
+<li>patches(可选)</li>
+<li>补丁文件，用于对源码打补丁</li>
+<li>files(可选)</li>
+<li>配置文件目录</li>
+</ul>
+<h1 id="Makefile语法"><a href="#Makefile语法" class="headerlink" title="Makefile语法"></a>Makefile语法</h1><h2 id="引入文件"><a href="#引入文件" class="headerlink" title="引入文件"></a>引入文件</h2><p>OpenWrt使用三个Makefile的子文件，分别为：</p>
+<blockquote>
+<p><strong>include $(TOPDIR)&#x2F;rules.mk</strong></p>
+<p><strong>include $(INCLUDE_DIR)&#x2F;kernel.mk</strong></p>
+<p><strong>include $(INCLUDE_DIR)&#x2F;package.mk</strong></p>
+</blockquote>
+<p>由这些Makefile子文件确定软件包加入OpenWrt的方式和方法。$(TOPDIR)&#x2F;rules.mk一般在Makefile的开头，$(INCLUDE_DIR)&#x2F;kernel.mk文件对于软件包为内核时是不可缺少的，$(INCLUDE_DIR)&#x2F;package.mk一般在软件包的基本信息完成后再引入。</p>
+<h2 id="示例Makefile"><a href="#示例Makefile" class="headerlink" title="示例Makefile"></a>示例Makefile</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="variable">$(TOPDIR)</span>/rules.mk</span><br><span class="line"></span><br><span class="line">PKG_NAME:=bridge</span><br><span class="line">PKG_VERSION:=1.0.6</span><br><span class="line">PKG_RELEASE:=1</span><br><span class="line"></span><br><span class="line">PKG_BUILD_DIR:=<span class="variable">$(BUILD_DIR)</span>/bridge-utils-<span class="variable">$(PKG_VERSION)</span></span><br><span class="line">PKG_SOURCE:=bridge-utils-<span class="variable">$(PKG_VERSION)</span>.tar.gz</span><br><span class="line">PKG_SOURCE_URL:=@SF/bridge</span><br><span class="line">PKG_MD5SUM:=9b7dc52656f5cbec846a7ba3299f73bd</span><br><span class="line">PKG_CAT:=zcat</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="variable">$(INCLUDE_DIR)</span>/package.mk</span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> Package/bridge</span><br><span class="line">  SECTION:=base</span><br><span class="line">  CATEGORY:=Network</span><br><span class="line">  TITLE:=Ethernet bridging configuration utility</span><br><span class="line">  <span class="comment">#DESCRIPTION:=This variable is obsolete. use the Package/name/description define instead!</span></span><br><span class="line">  URL:=http://bridge.sourceforge.net/</span><br><span class="line"><span class="keyword">endef</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> Package/bridge/description</span><br><span class="line"> Ethernet bridging configuration utility</span><br><span class="line"> Manage ethernet bridging; a way to connect networks together to</span><br><span class="line"> form a larger network.</span><br><span class="line"><span class="keyword">endef</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> Build/Configure</span><br><span class="line">  <span class="variable">$(<span class="built_in">call</span> Build/Configure/Default,--with-linux-headers=<span class="variable">$(LINUX_DIR)</span>)</span></span><br><span class="line"><span class="keyword">endef</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> Package/bridge/install</span><br><span class="line">  <span class="variable">$(INSTALL_DIR)</span> $(1)/usr/sbin</span><br><span class="line">  <span class="variable">$(INSTALL_BIN)</span> <span class="variable">$(PKG_BUILD_DIR)</span>/brctl/brctl $(1)/usr/sbin/</span><br><span class="line"><span class="keyword">endef</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(<span class="built_in">eval</span> $(<span class="built_in">call</span> BuildPackage,bridge)</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这是最为关键的<strong>BuildPackage</strong>宏。它是在**$(INCLUDE_DIR)&#x2F;package.mk<strong>文件里定义的。</strong>BuildPackage宏只要求一个参数，即要编译的软件包名**，在本例中是“bridge”。所有其他信息都通过宏来获得，这提供了一种内在的简洁性。比如BuildPackage需要软件包的一大串描述信息，我们并不要向它传递冗长的参数，因为我们已经约定描述信息定义在DESCRIPTION宏，BuildPackage从里面读取就可以了。</p>
+<h2 id="软件包信息"><a href="#软件包信息" class="headerlink" title="软件包信息"></a>软件包信息</h2><p>软件包的信息均以PKG_开头，其意思和作用如下：</p>
+<ul>
+<li><strong>PKG_NAME</strong> -软件包的名字, 在 menuconfig 和 ipkg 显示</li>
+<li><strong>PKG_VERSION</strong> -软件包的版本，主干分支的版本正是我们要下载的</li>
+<li><strong>PKG_RELEASE</strong> -这个 makefile 的版本</li>
+<li><strong>PKG_BUILD_DIR</strong> -编译软件包的目录</li>
+<li><strong>PKG_SOURCE</strong> -要下载的软件包的名字，一般是由 PKG_NAME 和 PKG_VERSION 组成</li>
+<li><strong>PKG_SOURCE_URL</strong> -下载这个软件包的链接</li>
+<li><strong>PKG_MD5SUM</strong> -软件包的 MD5 值</li>
+<li><strong>PKG_CAT</strong> -解压软件包的方法 (zcat, bzcat, unzip)</li>
+<li><strong>PKG_BUILD_DEPENDS</strong> -<strong>需要预先构建的软件包，但只是在构建本软件包时，而不是运行的时候</strong>。它的语法和下面的DEPENDS一样。</li>
+</ul>
+<p>PKG_*变量定义了从何处下载这个软件包；@SF是表示从sourceforge网站下载的一个特殊关键字。md5sum用来检查从网上下载的软件包是否完好无损。PKG_BUILD_DIR定义了软件包源代码的解压路径。</p>
+<h2 id="BuildPackage相关的宏"><a href="#BuildPackage相关的宏" class="headerlink" title="BuildPackage相关的宏"></a>BuildPackage相关的宏</h2><p>应用程序的编译包以Package&#x2F;开头。然后接着软件名，在Package定义中的软件名可以与软件包名不一样，而且可以多个定义。下面使用$(PKG_NAME)只是做一个标志，并非真正使用$(PKG_NAME)，如Package&#x2F;$(PKG_NAME)。</p>
+<ul>
+<li><strong>SECTION</strong> 表示包的类型，预留。</li>
+<li><strong>CATRGORY</strong> 表示分类，在make menuconfig的菜单下将可以找到。</li>
+<li><strong>TITLE</strong> 用于软件包的简短描述。</li>
+<li><strong>DESCRIPTION</strong> 用于软件包的详细描述，<strong>已放弃使用</strong>。如果使用DESCRIPTION将会提示“error DESCRIPTION:&#x3D; is obsolete, use Package&#x2F;PKG_NAME&#x2F;description”。</li>
+<li><strong>URL</strong> 表示软件包的下载位置。</li>
+<li><strong>MAINTAIER</strong> 表示维护者，选项。</li>
+<li><strong>DEPENDS</strong> 表示与其他软件的依赖。<strong>运行本软件依赖的其他包</strong>。如果存在多个依赖，则每个依赖需要用空格分开。依赖前使用+号表示默认为显示，即对象没有选中时也会显示，使用@则默认为不显示，即当依赖对象选中后才显示。</li>
+</ul>
+<blockquote>
+<p>在用户空间的应用程序软件包中没有内核驱动模块的AUTOLOAD参数。<strong>如果应用软件需要在boot时自动运行，则需要在&#x2F;etc&#x2F;init.d中增加相应的脚本文件。脚本文件需要START参数，说明在boot时的优先级，如果在boot过程启动后再关闭，则需要进一步设置STOP参数。如果STOP参数存在，其值必须大于START。脚本文件需要start()和stop()两个函数，start()是执行程序，stop()是关闭程序。</strong>关闭程序一般需要执行killall命令。<strong>由&#x2F;etc&#x2F;rc.d&#x2F;S10boot知道，装载内核驱动模块的优先级为10，需要使用自己设计的内核驱动模块的程序其START的值必须大于10。同样由&#x2F;etc&#x2F;rc.d&#x2F;S40network知道，使用网络通信的程序其START的值必须大于40</strong>。</p>
+</blockquote>
+<ul>
+<li><strong>Package&#x2F;$(PKG_NAME)&#x2F;conffiles</strong> 本包安装的配置文件，一行一个。如果文件结尾使用&#x2F;，则表示为目录。用于备份配置文件说明，在sysupgrade命令执行时将会用到。</li>
+<li><strong>Package&#x2F;$(PKG_NAME)&#x2F;description</strong> 软件包的详细描述，取代前面提到的DESCRIPTION详细描述。</li>
+<li><strong>Build&#x2F;Prepare</strong> 编译准备方法，对于网上下载的软件包不需要再描述。对于非网上下载或自行开发的软件包必须说明编译准备方法。一般的准备方法为：</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define Build/Prepare</span><br><span class="line">    mkdir -p <span class="variable">$(</span><span class="variable constant_">PKG_BUILD_DIR</span>)</span><br><span class="line">    <span class="variable">$(</span><span class="variable constant_">CP</span>) ./src/* <span class="variable">$(</span><span class="variable constant_">PKG_BUILD_DIR</span>)/</span><br><span class="line">endef</span><br></pre></td></tr></table></figure>
+
+<p>按OpenWrt的习惯，一般把自己设计的程序全部在src目录下。</p>
+<ul>
+<li><strong>Build&#x2F;Compile</strong> 编译方法，没有特别说明的可以不予以定义。如果不定义将默认使用编译方法Build&#x2F;Compile&#x2F;Default。<br> 自行开发的软件包可以考虑使用下面的定义。</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">define</span> Build/Compile</span><br><span class="line">    <span class="variable">$(MAKE)</span> -C <span class="variable">$(PKG_BUILD_DIR)</span> \</span><br><span class="line">    <span class="variable">$(TARGET_CONFIGURE_OPTS)</span> CFLAGS=<span class="string">&quot;<span class="variable">$(TARGET_CFLAGS)</span> -I <span class="variable">$(LINUX_DIR)</span>/include&quot;</span></span><br><span class="line"><span class="keyword">endef</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Package&#x2F;$(PKG_NAME)&#x2F;install</strong> 软件包的安装方法，包括一系列拷贝编译好的文件到指定位置。<strong>调用时会带一个参数，就是嵌入式系统的镜像文件系统目录</strong>，因此**$(1)表示嵌入式系统的镜像目录**。一般可以采用下面的方法：</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">define</span> Package/<span class="variable">$(PKG_NAME)</span>/install</span><br><span class="line">    <span class="variable">$(INSTALL_DIR)</span> $(1)/usr/bin</span><br><span class="line">    <span class="variable">$(INSTALL_BIN)</span> <span class="variable">$(PKG_BUILD_DIR)</span>/<span class="variable">$(PKG_NAME)</span> $(1)/usr/bin/</span><br><span class="line"><span class="keyword">endef</span></span><br></pre></td></tr></table></figure>
+
+<p>INSTALL_DIR、INSTALL_BIN在$(TOPDIR)&#x2F;rules.mk文件定义，所以本Makefile必须引入$(TOPDIR)&#x2F;rules.mk文件。<br> <strong>INSTALL_DIR:&#x3D;install -d -m0755</strong> 意思是创建所属用户可读写和执行，其他用户可读可执行的目录。<br> <strong>INSTALL_BIN:&#x3D;install -m0755</strong> 意思是编译好的文件存放到镜像文件目录。<br> 如果用户空间的应用软件在boot时要自动运行，则需要在安装方法说明中增加自动运行的脚本文件安装和配置文件安装方法。<br> 例如：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">define</span> Package/mountd/install</span><br><span class="line">    <span class="variable">$(INSTALL_DIR)</span> $(1)/sbin/ $(1)/etc/config/ $(1)/etc/init.d/</span><br><span class="line">    <span class="variable">$(INSTALL_BIN)</span> <span class="variable">$(PKG_BUILD_DIR)</span>/mountd $(1)/sbin/</span><br><span class="line">    <span class="variable">$(INSTALL_DATA)</span> ./files/mountd.config $(1)/etc/config/mountd</span><br><span class="line">    <span class="variable">$(INSTALL_BIN)</span> ./files/mountd.init $(1)/etc/init.d/mountd</span><br><span class="line"><span class="keyword">endef</span></span><br></pre></td></tr></table></figure>
+
+<p>安装文件放在files子目录下，不要与源代码文件目录src混在一起，以提高可读性。使用清晰的文件扩展名，更方便安装识别文件。</p>
+<ul>
+<li><strong>Package&#x2F;$(PKG_NAME)&#x2F;preinst</strong> 软件包安装前处理方法，使用脚本语言，因此定义的第一行需要下面的格式<br> <code>#!/bin/sh</code><br> 调用时带入的参数为嵌入式系统的镜像目录。</li>
+<li><strong>Package&#x2F;$(PKG_NAME)&#x2F;postinst</strong> 软件包安装后处理方法，使用脚本语言。</li>
+<li><strong>Package&#x2F;$(PKG_NAME)&#x2F;prerm</strong> 软件包删除前处理方法，使用脚本语言。</li>
+<li><strong>Package&#x2F;$(PKG_NAME)&#x2F;postrm</strong> 软件包删除后处理方法，使用脚本语言。</li>
+</ul>
+<p><strong>注意：</strong>对于所有在pre&#x2F;post, install&#x2F;removal脚本中使用的变量，<strong>都应该使用”$$“代替”$“</strong>。这是告诉make暂时不要解析这个变量，而是把它当成普通字符串以及用”$“代替”$$“</p>
+<h2 id="内核驱动模块包定义"><a href="#内核驱动模块包定义" class="headerlink" title="内核驱动模块包定义"></a>内核驱动模块包定义</h2><p>Linux分为内核空间和用户空间。开发者开发的内核部分可以直接加入Linux的Kernel程序，也可以生成内核模块以便需要时装入内核。OpenWrt一般希望开发者生成内核模块，在Linux启动后自动装载或手工使用insmod命令装载。内核模块使用KernelPackage开头，其他与一般应用软件包基本相同。<br> 在内核驱动模块定义中增加了：</p>
+<ul>
+<li><strong>SUBMENU</strong> 表示子菜单位置，在$(INCLUDE)&#x2F;kernel.mk对内核模块定义了CATEGORY为kernel modules，所以内核模块在menuconfig中的主菜单为kernel modules，然后有下一级子菜单$(SUBMENU)。在子菜单下可以看到以kmod-$(PKG_NAME)项目。</li>
+<li><strong>DEFAULT</strong> 表示直接编入内核或产生内核模块，y表示直接编入内核，m表示产生内核模块。</li>
+<li><strong>AUTOLOAD</strong> 表示自动装入内核，一般表示方法为：<br> <code>AUTOLOAD:=$(call AutoLoad, $(PRIORITY),$(AUTOLOAD_MODS))</code><br> AutoLoad的第一个参数$(PRIORITY)为优先级，01为最优先，99为最后装载。有关自动装载可以在&#x2F;etc&#x2F;modules.d目录下看到，第二个参数$(AUTOLOAD_MODS)模块名，每个模块名以空格符分隔。即可同时装载多个内核模块。<br> 在开发过程最好不要使用自动装载，经过严格调试后再使用，可以减轻调试的工作量。</li>
+</ul>
+<h2 id="使用定义"><a href="#使用定义" class="headerlink" title="使用定义"></a>使用定义</h2><p>完成前面定义后，必须使用eval函数实现各种定义。其格式为：<br> 对于一般应用软件包<br> <code>$(eval $(call Package, $(PKG_NAME)))</code><br> 或对于内核驱动模块<br> <code>$(eval $(call KernelPackage, $(PKG_NAME)))</code><br> 如果一个软件包有多个程序，例如：一个应用程序有自己的内核驱动模块，上面使用PKG_NAME需要灵活变通。eval函数可以设计多个。也可以当成多个软件包处理。</p>
+<h2 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/21c8937ac7ea">https://www.jianshu.com/p/21c8937ac7ea</a></p>
+<p><a target="_blank" rel="noopener" href="https://openwrt.org/zh-cn/doc/devel/packages">https://openwrt.org/zh-cn/doc/devel/packages</a></p>
+</blockquote>
+<h1 id="开机自启动配置"><a href="#开机自启动配置" class="headerlink" title="开机自启动配置"></a>开机自启动配置</h1><ul>
+<li><p>创建文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p package/helloworld/files</span><br><span class="line">cd package/helloworld/files</span><br><span class="line">touch helloworld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写脚本</p>
+<img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200218113811.png" style="zoom:200%;" />
+</li>
+<li><p>修改helloworld 目录下的Makefile</p>
+<img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200218113854.png" style="zoom:200%;" /></li>
+</ul>
+<h1 id="重复安装保留配置文件"><a href="#重复安装保留配置文件" class="headerlink" title="重复安装保留配置文件"></a>重复安装保留配置文件</h1><ul>
+<li><p>问题</p>
+<img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200218114051.png" style="zoom:200%;" />
+</li>
+<li><p>解决方法</p>
+<img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200218114157.png" style="zoom:200%;" />
+</li>
+<li><p>引用</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34512804/how-to-keep-config-after-reinstall-ipk-on-openwrt">https://stackoverflow.com/questions/34512804/how-to-keep-config-after-reinstall-ipk-on-openwrt</a></p>
+</blockquote>
+</li>
+</ul>
+</div><div class="tags"><a href="/tags/openwrt/"><i class="fa fa-tag"></i>openwrt</a></div><div class="post-nav"><a class="pre" href="/article/39543/">固件加头部信息</a><a class="next" href="/article/18269/">Typoro PicGo MarkDown协同工作</a></div><script src="https://utteranc.es/client.js" repo="echomlv/blog_comments" issue-term="title" theme="github-light" crossorigin="anonymous" async> </script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">相关知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Openwrt%E8%BD%AF%E4%BB%B6%E6%BA%90%E7%A0%81%E5%8C%85%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">Openwrt软件源码包的结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Makefile%E8%AF%AD%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">Makefile语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">引入文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8BMakefile"><span class="toc-number">3.2.</span> <span class="toc-text">示例Makefile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%8C%85%E4%BF%A1%E6%81%AF"><span class="toc-number">3.3.</span> <span class="toc-text">软件包信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BuildPackage%E7%9B%B8%E5%85%B3%E7%9A%84%E5%AE%8F"><span class="toc-number">3.4.</span> <span class="toc-text">BuildPackage相关的宏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9D%97%E5%8C%85%E5%AE%9A%E4%B9%89"><span class="toc-number">3.5.</span> <span class="toc-text">内核驱动模块包定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%AE%9A%E4%B9%89"><span class="toc-number">3.6.</span> <span class="toc-text">使用定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%BC%95%E7%94%A8"><span class="toc-number">3.7.</span> <span class="toc-text">参考引用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">开机自启动配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E5%A4%8D%E5%AE%89%E8%A3%85%E4%BF%9D%E7%95%99%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text">重复安装保留配置文件</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">行走的康康.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="246,246,246" opacity="0.5" zIndex="-2" count="50" src="//cdn.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
