@@ -115,9 +115,9 @@
     <category term="通信协议" scheme="https://blog.littlekang.xyz/categories/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/"/>
     
     
-    <category term="linux" scheme="https://blog.littlekang.xyz/tags/linux/"/>
-    
     <category term="udp" scheme="https://blog.littlekang.xyz/tags/udp/"/>
+    
+    <category term="linux" scheme="https://blog.littlekang.xyz/tags/linux/"/>
     
   </entry>
   
@@ -268,9 +268,9 @@
     <category term="开发环境" scheme="https://blog.littlekang.xyz/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
     
     
-    <category term="http" scheme="https://blog.littlekang.xyz/tags/http/"/>
-    
     <category term="ota" scheme="https://blog.littlekang.xyz/tags/ota/"/>
+    
+    <category term="http" scheme="https://blog.littlekang.xyz/tags/http/"/>
     
   </entry>
   

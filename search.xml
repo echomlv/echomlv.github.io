@@ -97,9 +97,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> udp </tag>
+            
+            <tag> linux </tag>
             
         </tags>
       
@@ -259,9 +259,9 @@
       
         <tags>
             
-            <tag> http </tag>
-            
             <tag> ota </tag>
+            
+            <tag> http </tag>
             
         </tags>
       
