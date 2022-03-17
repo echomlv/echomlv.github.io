@@ -126,6 +126,11 @@
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018250408">https://segmentfault.com/a/1190000018250408</a></p>
 </blockquote>
+<p><strong>主要事项：</strong></p>
+<p>如果需要使用自己的域名，则需要添加<code>CNAME</code>文件，需要将CNAME放在hexo的source文件夹下:</p>
+<img src="https://nas.littlekang.xyz:9000/markdown/2022-03/1720_3011-PaoKMEmKCgGa5Iaw.png" alt="image-20220317203011710" style="zoom:200%;" />
+
+<p>CNAME文件中填写自己的域名，让后在自己域名的DNS解析中，添加一条CNAME规则，指到xxxx.github.io .</p>
 <p>最后流程：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
