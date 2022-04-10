@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>国密学习笔记-简介 | 行走的康康</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 6.1.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">国密学习笔记-简介</h1><a id="logo" href="/.">行走的康康</a><p class="description">静下心来,不要浮躁</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">国密学习笔记-简介</h1><div class="post-meta">2022-04-10<span> | </span><span class="category"><a href="/categories/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">加密算法</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 2.4k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 8</span><span class="post-meta-item-text"> 分钟</span></span></span></div><div class="post-content"><p>第一次接触所谓的国密算法，在网上收集的资料，记录之。</p>
+<span id="more"></span>
+
+
+<h1 id="什么是国密算法"><a href="#什么是国密算法" class="headerlink" title="什么是国密算法"></a>什么是国密算法</h1><p>国产密码算法（<strong>国密算法</strong>）是指国家密码局认定的<strong>国产商用密码算法</strong>，在金融领域目前主要使用公开的SM2、SM3、SM4三类算法，分别是非对称算法、哈希算法和对称算法。</p>
+<ul>
+<li><p><strong>SM1算法</strong>–分组对称算法<br>该算法是由国家密码管理局编制的一种商用密码<strong>分组标准对称算法</strong>，<strong>分组长度和密钥长度均为128位</strong>，算法的安全保密强度及相关软硬件实现性能与AES算法相当，目前该<strong>算法尚未公开</strong>，<strong>仅以IP核的形式存在于芯片中</strong>。调用该算法时，需要通过加密芯片的接口进行调用。</p>
+</li>
+<li><p><strong>SM2算法</strong>–非对称算法<br>SM2<strong>椭圆曲线公钥密码算法</strong>是我国自主设计的公钥密码算法，包括SM2-1椭圆曲线数字签名算法，SM2-2椭圆曲线密钥交换协议，SM2-3椭圆曲线公钥加密算法，分别用于实现数字签名、密钥协商、数据加密等功能。<strong>SM2算法与RSA算法不同的是，SM2算法是基于椭圆曲线上点群离散对数难题</strong>，相对于RSA算法，<strong>256位的SM2密码强度</strong>已经比2048位的RSA密码强度要高。</p>
+</li>
+<li><p><strong>SM3算法</strong>–哈希算法(杂凑算法)<br>SM3<strong>杂凑算法</strong>是我国自主设计的密码杂凑算法，适用于商用密码应用中的<strong>数字签名</strong>和<strong>验证消息认证码的生成与验证</strong>以及<strong>随机数的生成</strong>，可满足多种密码应用的安全需求。为了保证杂凑算法的安全性，其产生的杂凑值的长度不应太短，例如MD5输出128比特杂凑值，输出长度太短，影响其安全性SHA-1算法的输出长度为160比特，<strong>SM3算法的输出长度为256比特</strong>，因此SM3算法的安全性要高于MD5算法和SHA-1算法。<br>  <strong>该算法为不可逆的算法。具体算法也是保密。</strong></p>
+</li>
+<li><p><strong>SM4算法</strong>–分组对称算法<br>SM4<strong>分组密码算法</strong>是我国自主设计的分组对称密码算法，<strong>用于实现数据的加密&#x2F;解密运算</strong>，以保证数据和信息的机密性。要保证一个对称密码算法的安全性的基本条件是其具备足够的密钥长度，SM4算法与AES算法具有相同的密钥长度分组长度128比特，因此在安全性上高于3DES算法。</p>
+</li>
+</ul>
+<p><strong>注：由于SM1、SM4加解密的分组大小为128bit，故对消息进行加解密时，若消息长度过长，需要进行分组，要消息长度不足，则要进行填充。</strong></p>
+<ul>
+<li><p><strong>SM7算法</strong>–分组对称算法<br>SM7算法是一种<strong>分组密码算法</strong>，分组长度为128比特，密钥长度为128比特。SM7的算法文本<strong>目前没有公开发布</strong>。SM7<strong>适用于非接IC卡应用包括身份识别类应用</strong>（门禁卡、工作证、参赛证），票务类应用（大型赛事门票、展会门票），支付与通卡类应用（积分消费卡、校园一卡通、企业一卡通、公交一卡通）。</p>
+</li>
+<li><p><strong>SM9算法</strong>–非对称算法<br>SM9是基于对的标识密码算法，与SM2类似，包含四个部分：总则，数字签名算法，密钥交换协议以及密钥封装机制和公钥加密算法。在这些算法中使用了椭圆曲线上的对这一个工具，不同于传统意义上的SM2算法，可以实现基于身份的密码体制，也就是<strong>公钥与用户的身份信息</strong>即标识相关，从而比传统意义上的公钥密码体制有许多优点，省去了证书管理等</p>
+</li>
+</ul>
+<h1 id="与DES、RSA、SHA-256的区别"><a href="#与DES、RSA、SHA-256的区别" class="headerlink" title="与DES、RSA、SHA-256的区别"></a>与DES、RSA、SHA-256的区别</h1><h2 id="分组密码算法-对称算法-—国际DES、过密SM4"><a href="#分组密码算法-对称算法-—国际DES、过密SM4" class="headerlink" title="分组密码算法(对称算法)—国际DES、过密SM4"></a>分组密码算法(对称算法)—国际DES、过密SM4</h2><p>分组密码就是<strong>将明文数据按固定长度进行分组</strong>，<strong>然后在同一密钥控制下逐组进行加密</strong>，从而<strong>将各个明文分组变换成一个等长的密文分组的密码</strong>。其中二进制明文分组的长度称为该分组密码的分组规模。</p>
+<p>要求：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">必须实现起来比较简单,知道密钥时加密和解密都十分容易,适合硬件和(或)软件实现;</span><br><span class="line"> </span><br><span class="line">加解密速度和所消耗的资源和成本较低,能满足具体应用范围的需要</span><br></pre></td></tr></table></figure>
+
+<p>分组密码的设计基本遵循混淆原则和扩散原则：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">混淆原则就是将密文、明文、密钥三者之间的统计关系和代数关系变得尽可能复杂，使得敌手即使获得了密文和明文，</span><br><span class="line">也无法求出密钥的任何信息;即使获得了密文和明文的统计规律，也无法求出明文的任何信息。</span><br><span class="line"> </span><br><span class="line">扩散原则就是应将明文的统计规律和结构规律散射到相当长的一段统计中去。</span><br><span class="line">也就是说让明文中的每一位影响密文中的尽可能多的位，或者说让密文中的每一位都受到明文中的尽可能多位的影响。</span><br></pre></td></tr></table></figure>
+
+<p><strong>DES算法:</strong></p>
+<p>DES算法是在美国NSA(国家安全局)资助下由IBM公司开发的密码算法，其初衷是为政府非机密的敏感信息提供较强的加密保护。它是美国政府担保的第一种加密算法，并在1977年被正式作为美国联邦信息处理标准。<strong>DES主要提供非军事性质的联邦政府机构和私营部门使用</strong>，并迅速成为名声最大，使用最广的商用密码算法。</p>
+<p><strong>SM4算法：</strong>2006年我国公布了无限局域网产品使用的SM4密码算法。简介如[什么是国密算法](# 什么是国密算法)</p>
+<p>主要特性比较：<br><img src="https://nas.littlekang.xyz:9000/markdown/2022-04/0401_0012-tH74wdBDKZ6C4Luz.png" alt="image-20220404010012337" style="zoom:200%;" /></p>
+<h2 id="公钥密码算法-非对称算法-—国际RSA、国密SM2"><a href="#公钥密码算法-非对称算法-—国际RSA、国密SM2" class="headerlink" title="公钥密码算法(非对称算法)—国际RSA、国密SM2"></a>公钥密码算法(非对称算法)—国际RSA、国密SM2</h2><p>公钥密码学与其他密码学完全不同, 使用这种方法的加密系统，不仅公开加密算法本身，也公开了加密用的密钥。</p>
+<p>公钥密码系统与只使用一个密钥的对称传统密码不同，算法是基于数学函数而不是基于替换和置换。公钥密码学是非对称的，它使用两个独立的密钥，即密钥分为公钥和私钥，因此称双密钥体制。<strong>双钥体制的公钥可以公开</strong>，因此称为公钥算法。</p>
+<p>公钥算法的出现，给密码的发展开辟了新的方向。公钥算法虽然已经历了20多年的发展，但仍具有强劲的发展势头，在鉴别系统和密钥交换等安全技术领域起着关键的作用</p>
+<p>公钥算法的加密与解密由不同的密钥完成，并且从加密密钥得到解密密钥在计算上是不可行的。<strong>通常，公钥算法的两个密钥中任何一个都可以作为加密而另一个用作解密，但不是所有的公钥算法都是如此</strong>。</p>
+<p><strong>RSA算法：</strong></p>
+<p>RSA算法由Rivest、Shamir、Adleman于1978年首次发表，是迄今为止最容易理解和实现的公钥算法，已经受住了多年深入的攻击，其理论基础是一种特殊的可逆模幂运算，其安全性基于分解大整数的困难性。</p>
+<p>RSA算法既可用于加密，又可用于数字签名，已得到广泛采用，并被许多标准化组织(如ISO、ITU、IETF和SWIFT等)接纳。目前许多国家标准仍采用RSA算法或它的变型。</p>
+<p>RSA算法的实现如下：</p>
+<ul>
+<li>实现者寻找出两个大素数p和q</li>
+<li>实现者计算出n&#x3D;pq 和φ(n)&#x3D;(p-1)(q-1)</li>
+<li>实现者选择一个随机数e (0&lt;e&lt;&gt;&lt;&#x2F;e&lt;&gt;</li>
+<li>实现者使用辗转相除法计算d&#x3D;e-1(modφ(n))</li>
+<li>实现者在目录中公开n和e作为公钥</li>
+</ul>
+<p><strong>SM2算法</strong>：</p>
+<p>SM2算法由国家密码管理局于2010年12月17日发布，全称为椭圆曲线算法。<br>椭圆曲线并不是椭圆，之所以称为椭圆曲线是因为它们是用三次方程来表示的，并且该方程与计算椭圆周长的方程相似。一般而言，椭圆曲线的三次方程形为：</p>
+<p><code>y2+axy+by=x3+cx^2+dx+e</code> [其中a,b,c,d和e是满足某些条件的实数，因为方程中的指数最高是3，所以我们称之为三次方程，或者说方程的次数为3]</p>
+<p>SM2算法使用的方程为：<code>y^2= x^3 + ax + b</code></p>
+<p>SM2算法实现如下：</p>
+<ul>
+<li>选择Ep(a,b)的元素G,使得G的阶n是一个大素数</li>
+<li>G的阶是指满足nG&#x3D;O的最小n值</li>
+<li>秘密选择整数k，计算B&#x3D;kG，然后公开(p,a,b,G,B)，B为公钥，保密k，k为私钥</li>
+</ul>
+<p>主要特性对比如下:<br><img src="https://nas.littlekang.xyz:9000/markdown/2022-04/0401_1805-ysCKOpcpXMreyvaj.png" alt="image-20220404011805128" style="zoom:200%;" /></p>
+<h2 id="摘要算法-签名算法-—-国际SHA-256与国密SM3"><a href="#摘要算法-签名算法-—-国际SHA-256与国密SM3" class="headerlink" title="摘要算法(签名算法)— 国际SHA-256与国密SM3"></a>摘要算法(签名算法)— 国际SHA-256与国密SM3</h2><p>摘要函数在密码学中具有重要的地位,被广泛应用在<strong>数字签名</strong>,<strong>消息认证</strong>,<strong>数据完整性检测</strong>等领域。摘要函数通常被认为需要满足三个基本特性：碰撞稳固性,原根稳固性和第二原根稳固性。</p>
+<h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/peterYong/p/15043372.html">国密算法学习</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jambeau/article/details/99761661">浅谈DES、RAS、SHA-256与SM1、SM2、SM3、SM4区别</a></p>
+</blockquote>
+</div><div class="tags"><a href="/tags/gm/"><i class="fa fa-tag"></i>gm</a></div><div class="post-nav"><a class="pre" href="/article/25197/">国密学习笔记-专业术语</a><a class="next" href="/article/10514/">u-boot学习笔记-relocate</a></div><script src="https://utteranc.es/client.js" repo="echomlv/blog_comments" issue-term="title" theme="github-light" crossorigin="anonymous" async> </script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar-toc"><div class="stoc-article" id="sidebar-stoc"><strong class="stoc-title"><i class="fa fa-blind"> Contents </i></strong><div class="toc-nav" id="stoc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%BD%E5%AF%86%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">什么是国密算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8EDES%E3%80%81RSA%E3%80%81SHA-256%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">与DES、RSA、SHA-256的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95-%E5%AF%B9%E7%A7%B0%E7%AE%97%E6%B3%95-%E2%80%94%E5%9B%BD%E9%99%85DES%E3%80%81%E8%BF%87%E5%AF%86SM4"><span class="toc-number">2.1.</span> <span class="toc-text">分组密码算法(对称算法)—国际DES、过密SM4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E7%AE%97%E6%B3%95-%E2%80%94%E5%9B%BD%E9%99%85RSA%E3%80%81%E5%9B%BD%E5%AF%86SM2"><span class="toc-number">2.2.</span> <span class="toc-text">公钥密码算法(非对称算法)—国际RSA、国密SM2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81%E7%AE%97%E6%B3%95-%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95-%E2%80%94-%E5%9B%BD%E9%99%85SHA-256%E4%B8%8E%E5%9B%BD%E5%AF%86SM3"><span class="toc-number">2.3.</span> <span class="toc-text">摘要算法(签名算法)— 国际SHA-256与国密SM3</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%BC%95%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">参考引用</span></a></li></ol></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">行走的康康.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" color="246,246,246" opacity="0.5" zIndex="-2" count="50" src="//cdn.jsdelivr.net/npm/canvas-nest.js/dist/canvas-nest.min.js"></script><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
