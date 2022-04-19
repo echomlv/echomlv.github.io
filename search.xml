@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>notepad++批量转换编码格式</title>
+      <link href="/article/7288/"/>
+      <url>/article/7288/</url>
+      
+        <content type="html"><![CDATA[<p>最近接手一些code，拿到手看了下编码格式，和自己习惯的<code>UTF-8, Unix(LF)</code>格式不一致，首先要做的就是修改编码格式，于是找到了基于notepad++的批处理方式，记录之。</p><span id="more"></span><h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">notepad++ v8.2.1 x64</span><br><span class="line"> </span><br><span class="line">win 11</span><br></pre></td></tr></table></figure><h1 id="安装python-script插件"><a href="#安装python-script插件" class="headerlink" title="安装python script插件"></a>安装python script插件</h1><img src="https://nas.littlekang.xyz:9000/markdown/2022-04/1912_4128-m07swBqZGMztEmgo.png" alt="image-20220419124121908" style="zoom:200%;" /> <h1 id="新建脚本"><a href="#新建脚本" class="headerlink" title="新建脚本"></a>新建脚本</h1><p>Choose menu Plugins-&gt;Python Script-&gt;New script.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os;</span><br><span class="line"><span class="keyword">import</span> sys;</span><br><span class="line">filePathSrc=<span class="string">&quot;F:\\Workspace\\test\\&quot;</span>                                 <span class="comment"># Path to the folder with files to convert</span></span><br><span class="line"><span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(filePathSrc):</span><br><span class="line">    <span class="keyword">for</span> fn <span class="keyword">in</span> files:</span><br><span class="line">        <span class="keyword">if</span> fn[-<span class="number">2</span>:] == <span class="string">&#x27;.c&#x27;</span> <span class="keyword">or</span> fn[-<span class="number">2</span>:] == <span class="string">&#x27;.h&#x27;</span>:                      <span class="comment"># Specify type of the files</span></span><br><span class="line">            notepad.<span class="built_in">open</span>(root + <span class="string">&quot;\\&quot;</span> + fn)     </span><br><span class="line">            notepad.runMenuCommand(<span class="string">&quot;Encoding&quot;</span>, <span class="string">&quot;Convert to UTF-8&quot;</span>)    <span class="comment"># convent to utf-8</span></span><br><span class="line">            notepad.runMenuCommand(<span class="string">&quot;EOL Conversion&quot;</span>, <span class="string">&quot;Unix (LF)&quot;</span>)    <span class="comment"># convent to unix LF</span></span><br><span class="line">            notepad.save()</span><br><span class="line">            notepad.close()</span><br><span class="line"> </span><br><span class="line"> </span><br></pre></td></tr></table></figure><h1 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h1><img src="https://nas.littlekang.xyz:9000/markdown/2022-04/1912_4428-2FAvRagGSut9q4Gw.png" alt="image-20220419124428641" style="zoom:200%;" /> <h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>1.notepad ++ 必须是在 英文状态下上述 方法才有效<br>2.filePathSrc 路径中不能包含中文</p><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><blockquote><p><a href="https://www.csdn.net/tags/MtTaMgzsODA3NTY5LWJsb2cO0O0O.html">https://www.csdn.net/tags/MtTaMgzsODA3NTY5LWJsb2cO0O0O.html</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 开发环境 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IDE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>硬件学习笔记-USB接口</title>
+      <link href="/article/27604/"/>
+      <url>/article/27604/</url>
+      
+        <content type="html"><![CDATA[<p>最近看原理图，接触到Type C接口，就想着老是搞不太清楚，各USB接口的线序定义，每次都要来搜索，不如整理归档，以备后续查看。</p><span id="more"></span><h1 id="USB标准"><a href="#USB标准" class="headerlink" title="USB标准"></a>USB标准</h1><p>自1996年USB-IF（USB Implementers Forum）组织发布USB 1.0标准以来，USB标准经历了USB 1.1、USB 2.0、USB 3.0、USB 3.1、USB 3.2多个版本的发展。2019年，USB-IF组织发布了最新的USB4标准，为USB接口带来了全新的标准规范。</p><img src="https://nas.littlekang.xyz:9000/markdown/2022-04/1811_0529-fgy4gskmflqjrvJQ.png" alt="image-20220418110523783" style="zoom:200%;" /><p>USB 3.0和USB 3.1哪里去了呢？</p><p>这里还有几个关于官方改名的小故事：</p><p><strong>第一次改名：2003年</strong></p><p>USB-IF组织对USB的规格和标准进行了重命名，将USB 1.0改名为USB 2.0低速（Low-Speed）版，<strong>USB 1.1改名为USB 2.0全速（Full-Speed）版</strong>，<strong>USB 2.0改名为USB 2.0高速（High-Speed）</strong>版。</p><p><strong>第二次改名：2013年</strong></p><p>在USB 3.1发布后不久，USB-IF组织将<strong>USB 3.0改名为USB 3.1 Gen1</strong>，<strong>USB 3.1改名为USB 3.1 Gen2</strong>。但是这次改名却给消费者带来了麻烦，很多奸商在产品包装上只标注了产品支持USB 3.1，但是没有标注是Gen1还是Gen2，两者传输性能差别巨大，导致消费者一不小心就会入坑。</p><p><strong>第三次改名：2019年</strong></p><p>USB-IF组织<strong>将USB 3.1 Gen 1（即原来的USB3.0）改名为USB 3.2 Gen1</strong>，<strong>USB 3.1 Gen2（即原来的USB 3.1）改名为USB 3.2 Gen2 x1</strong>，<strong>USB 3.2则被改名为USB 3.2 Gen2 x2</strong>。</p><img src="https://nas.littlekang.xyz:9000/markdown/2022-04/1811_0956-7mb1F2gmMTArS8Zm.png" alt="image-20220418110956592" style="zoom:200%;" /> <h1 id="USB接口的类型"><a href="#USB接口的类型" class="headerlink" title="USB接口的类型"></a>USB接口的类型</h1><img src="https://nas.littlekang.xyz:9000/markdown/2022-04/1811_1708-4lem8oS8wif9m4Jp.png" alt="image-20220418111708091" style="zoom:200%;" /> <p>USB标准与支持接口的关系：</p><img src="https://nas.littlekang.xyz:9000/markdown/2022-04/1811_2025-9noP9ZskKle1dIFW.png" alt="image-20220418112025439" style="zoom:200%;" /> <h1 id="接口引脚定义"><a href="#接口引脚定义" class="headerlink" title="接口引脚定义"></a>接口引脚定义</h1><img src="https://nas.littlekang.xyz:9000/markdown/2022-04/1811_3643-Gt6cE03bSX6XibqM.png" alt="image-20220418113640958" style="zoom:200%;" /> <img src="https://nas.littlekang.xyz:9000/markdown/2022-04/1811_3722-0wKsP1k7JHCDb8x0.png" alt="image-20220418113722088" style="zoom:200%;" /> <img src="https://nas.littlekang.xyz:9000/markdown/2022-04/1811_3743-TV8NQf8rO6gpT3tI.png" alt="image-20220418113743718" style="zoom:200%;" /> <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote><p><a href="https://blog.51cto.com/u_15259603/2878741">秒懂所有USB接口类型，USB接口大全</a></p><p><a href="https://zhuanlan.zhihu.com/p/364748197">常见USB引脚定义一览</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 硬件积累 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> usb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>国密学习笔记-SKF接口</title>
       <link href="/article/61294/"/>
       <url>/article/61294/</url>
