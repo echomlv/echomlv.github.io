@@ -6,7 +6,7 @@
   <link href="https://blog.littlekang.xyz/atom.xml" rel="self"/>
   
   <link href="https://blog.littlekang.xyz/"/>
-  <updated>2022-04-19T15:19:34.061Z</updated>
+  <updated>2022-06-13T15:08:38.141Z</updated>
   <id>https://blog.littlekang.xyz/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>硬件学习笔记-HDMI CEC</title>
+    <link href="https://blog.littlekang.xyz/article/28147/"/>
+    <id>https://blog.littlekang.xyz/article/28147/</id>
+    <published>2022-06-13T15:06:13.000Z</published>
+    <updated>2022-06-13T15:08:38.141Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近遇到一个问题，遥控开关一个视频盒子，然后发现电视被关闭了，感到很诧异呀；</p><p>查资料才了解到HDMI CEC这个东东，记录之。</p><span id="more"></span><h1 id="HDMI简介"><a href="#HDMI简介" class="headerlink" title="HDMI简介"></a>HDMI简介</h1><p>HDMI (高清多媒体界面, High Definition Mutimedia Interface)，是<strong>一种数字化视频&#x2F;音频接口技术</strong>，是适合影像传输的专用型数字化接口，其可同时传送音频和影像信号，最高数据传输速度为4.5GB&#x2F;s同时无需在信号传送前进行数&#x2F;模或者模&#x2F;数转换。</p><h2 id="HDMI接口"><a href="#HDMI接口" class="headerlink" title="HDMI接口"></a>HDMI接口</h2><img src="https://nas.littlekang.xyz:9000/markdown/2022-06/1322_3710-T37V8XP1LoNQY9QY.png" alt="image-20220613223710396" style="zoom:200%;" /><p><strong>A类（Type A）HDMI A Type</strong>是使用最广泛的HDMI线缆，HDMI A接口共有19pin，宽度为13.9毫米，厚度为4.45毫米。一般平板电视或视频设备，都提供了这种尺寸的接口，Type A有19针，宽度为13.9毫米、厚度为4.45毫米，现在日常生活使用中的影音设备99%都配有这种尺寸的接口。比如：蓝光播放器、小米盒子、笔记本电脑、液晶电视、投影机等等。</p><p><strong>B类（Type B）HDMI B Type</strong>生活中比较少见。HDMI B接口采用29pin，宽度21毫米。HDMI B Type的数据传输能力比HDMI A type快近两倍，相当于DVI Dual-Link。由于多数影音设备工作频率均在165MHz以下，而HDMI B Type的工作频率在270MHZ以上，在家庭应用中完全是过于“强悍”，现在只应用于一些专业场合，如WQXGA 2560×1600以上的分辨率。</p><p><strong>C类（Type C）HDMI C Type</strong>常称为Mini HDMI，它主要是为小型设备设计的。HDMI C Type同样采用19pin，其尺寸为10.42×2.4毫米比Type A小了将近1&#x2F;3，应用范围很小，主要应用在便携式设备上，比如数码相机、便携式播放机等设备。</p><p><strong>D类（Type D）HDMI D Type</strong>俗称Micro HDMI。HDMI D Type是最新的接口类型，尺寸进一步缩小。采用了双排针脚设计，同样为19pin，宽度只有6.4毫米，厚度2.8毫米，很像Mini USB接口。主要应用于小型的移动设备上面，更适用于便携和车载设备。比如：手机、平板电脑等。</p><p><strong>E类（Type E)HDMI E Type</strong>主要用于车载娱乐系统的音视频传输。由于车内环境的不稳定性，HDMI E Type在设计上具备抗震性、防潮、耐高强度、温差承受范围大等特性。在物理结构上，采用机械式锁定设计，能保证接触可靠性。</p><p><strong>通常质量合格的HDMI接口，插拔寿命不会少于5000次，每天插拔也能用10年，所以一般不用担心耐用方面的问题。</strong></p><h2 id="HDMI版本对比"><a href="#HDMI版本对比" class="headerlink" title="HDMI版本对比"></a>HDMI版本对比</h2><img src="https://nas.littlekang.xyz:9000/markdown/2022-06/1322_4120-paNvuopFX9fBwIcZ.png" alt="image-20220613224120090" style="zoom:200%;" /><img src="https://nas.littlekang.xyz:9000/markdown/2022-06/1322_4331-qWyYXdtZmf8E88MV.png" alt="image-20220613224331424" style="zoom:200%;" /><h1 id="CEC控制"><a href="#CEC控制" class="headerlink" title="CEC控制"></a>CEC控制</h1><p><strong>CEC</strong> (Consumer Electonics Control，消费者电子控制)，是一个 <a href="https://zh.m.wikipedia.org/wiki/HDMI">HDMI</a> 特性，设计允许用户只用一个<a href="https://zh.m.wikipedia.org/wiki/%E9%81%A5%E6%8E%A7%E5%99%A8">遥控器</a>，就能通过 HDMI 控制所有连接的设备[<a href="https://zh.m.wikipedia.org/zh-sg/CEC#cite_note-1">1]</a>[<a href="https://zh.m.wikipedia.org/zh-sg/CEC#cite_note-2">2]</a> 。例如，用 <a href="https://zh.m.wikipedia.org/wiki/%E7%94%B5%E8%A7%86%E6%9C%BA">电视机</a>遥控器控制<a href="https://zh.m.wikipedia.org/wiki/%E6%95%B8%E4%BD%8D%E8%A6%96%E8%A8%8A%E8%BD%89%E6%8F%9B%E7%9B%92">机顶盒</a> 或<a href="https://zh.m.wikipedia.org/wiki/DVD%E6%92%AD%E6%94%BE%E6%9C%BA">DVD播放机</a>。最多可控制 15 个设备。CEC 也允许启用了 CEC 的设备无用户干预互相控制。</p><p>CEC 是一个单线双向<a href="https://zh.m.wikipedia.org/wiki/%E4%B8%B2%E8%A1%8C%E9%80%9A%E4%BF%A1">串行</a>总线，基于<a href="https://zh.m.wikipedia.org/w/index.php?title=CENELEC&action=edit&redlink=1">CENELEC</a> 标准的 <a href="https://zh.m.wikipedia.org/w/index.php?title=AV.link&action=edit&redlink=1">AV.link</a> 协议完成<a href="https://zh.m.wikipedia.org/wiki/%E9%81%99%E6%8E%A7">远程控制</a>功能。[<a href="https://zh.m.wikipedia.org/zh-sg/CEC#cite_note-4">4]</a> 尽管 CEC 在产品中的实现是可选的，但 CEC 硬件线路是强制的。[<a href="https://zh.m.wikipedia.org/zh-sg/CEC#cite_note-HDMI1.3a-3">3]</a>（§8.1） CEC 在 HDMI 标准 1.0 中定义，在 HDMI 1.2、HDMI 1.2a、HDMI 1.3a 中更新（在总线中增加计时器和音频指令）。[<a href="https://zh.m.wikipedia.org/zh-sg/CEC#cite_note-HDMI1.3a-3">3]</a>:§§CEC-1.2,CEC-1.3,CEC-3.1,CEC-5 USB 转 CEC 适配器的出现允许电脑控制启用了 CEC 的设备。[<a href="https://zh.m.wikipedia.org/zh-sg/CEC#cite_note-5">5]</a>[<a href="https://zh.m.wikipedia.org/zh-sg/CEC#cite_note-6">6]</a></p><h2 id="框图"><a href="#框图" class="headerlink" title="框图"></a>框图</h2><img src="https://nas.littlekang.xyz:9000/markdown/2022-06/1322_5442-CU7LKHc9NfaR9iVu.png" alt="image-20220613225442661" style="zoom:200%;" /><h2 id="常用CEC命令"><a href="#常用CEC命令" class="headerlink" title="常用CEC命令"></a>常用CEC命令</h2><img src="https://nas.littlekang.xyz:9000/markdown/2022-06/1323_0046-Mq3NgPiLKOoj0cl2.png" alt="image-20220613230046434" style="zoom:200%;" /><h2 id="支持CEC的一些设备-未完善"><a href="#支持CEC的一些设备-未完善" class="headerlink" title="支持CEC的一些设备(未完善)"></a>支持CEC的一些设备(未完善)</h2><p>关于HDMI-CEC的一个令人困惑的事情是，设备是否具有这种特性并不总是很明显。 为了消除这种困惑，以下列出了几个电视和家庭影院组件制造商如何标记它。</p><img src="https://nas.littlekang.xyz:9000/markdown/2022-06/1323_0201-RKHxeHgIwkVan4Sr.png" alt="image-20220613230201361" style="zoom:200%;" /><h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><blockquote><p>  <a href="https://zhuanlan.zhihu.com/p/37185960">https://zhuanlan.zhihu.com/p/37185960</a></p><p>  <a href="https://blog.csdn.net/ftswsfb/article/details/100183640">https://blog.csdn.net/ftswsfb/article/details/100183640</a></p><p>  <a href="https://zh.wikipedia.org/zh-cn/HDMI">https://zh.wikipedia.org/zh-cn/HDMI</a></p><p>  <a href="https://zh.m.wikipedia.org/zh-sg/CEC">https://zh.m.wikipedia.org/zh-sg/CEC</a></p><p>  <a href="https://zhcn.eyewated.com/%E4%BB%80%E4%B9%88%E6%98%AFhdmi-cec%EF%BC%9F/">https://zhcn.eyewated.com/%E4%BB%80%E4%B9%88%E6%98%AFhdmi-cec%EF%BC%9F/</a></p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;最近遇到一个问题，遥控开关一个视频盒子，然后发现电视被关闭了，感到很诧异呀；&lt;/p&gt;
+&lt;p&gt;查资料才了解到HDMI CEC这个东东，记录之。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="硬件积累" scheme="https://blog.littlekang.xyz/categories/%E7%A1%AC%E4%BB%B6%E7%A7%AF%E7%B4%AF/"/>
+    
+    
+    <category term="hdmi" scheme="https://blog.littlekang.xyz/tags/hdmi/"/>
+    
+  </entry>
   
   <entry>
     <title>notepad++批量转换编码格式</title>
@@ -464,33 +486,6 @@
     
     
     <category term="sqlite" scheme="https://blog.littlekang.xyz/tags/sqlite/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>嵌入式固件升级_tomcat搭建http服务</title>
-    <link href="https://blog.littlekang.xyz/article/57319/"/>
-    <id>https://blog.littlekang.xyz/article/57319/</id>
-    <published>2020-03-12T01:42:15.000Z</published>
-    <updated>2022-03-17T11:43:13.108Z</updated>
-    
-    <content type="html"><![CDATA[<p>在嵌入式软件升级中，一般可以选择通过http来下载固件，tomcat是一种方式，<br>可以用来搭建web服务器，用于OTA的升级调试，而无需去了解其他比较复杂web服务器的配置。</p><h1 id="修改登陆用户名密码"><a href="#修改登陆用户名密码" class="headerlink" title="修改登陆用户名密码"></a>修改登陆用户名密码</h1><p>首先进入tomcat文件夹的conf文件夹，首先复制一份tomcat-users.xml作为备份<br>然后修改这个配置文件，用记事本打开，找到</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">&lt;role rolename=&quot;tomcat&quot;/&gt;</span><br><span class="line">&lt;role rolename=&quot;role1&quot;/&gt;</span><br><span class="line">&lt;user username=&quot;tomcat&quot; password=&quot;&lt;must-be-changed&gt;&quot; roles=&quot;tomcat&quot;/&gt;</span><br><span class="line">&lt;user username=&quot;both&quot; password=&quot;&lt;must-be-changed&gt;&quot; roles=&quot;tomcat,role1&quot;/&gt;</span><br><span class="line">&lt;user username=&quot;role1&quot; password=&quot;&lt;must-be-changed&gt;&quot; roles=&quot;role1&quot;/&gt;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure><p>去掉开头和结尾的<code>&lt;!-- --&gt;</code>然后修改为</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;role rolename=&quot;manager-gui&quot;/&gt;</span><br><span class="line">&lt;role rolename=&quot;admin-gui&quot;/&gt;</span><br><span class="line">&lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;manager-gui,admin-gui&quot;/&gt;</span><br></pre></td></tr></table></figure><p>其中如果你只添加manager-gui可以进去sever status和manager app，添加了admin-gui以后才能进去host-manager，然后重启tomcat<br>账号密码为：tomcat<br>如果cmd窗口一闪而过你又想知道是哪儿报错了，请用cmd进入tomcat&#x2F;bin文件夹然后用debug模式启动———catalina debug,一般是端口被占用，比如被你eclipse已经调用了tomcat</p><h1 id="tomcat-server-xml配置说明"><a href="#tomcat-server-xml配置说明" class="headerlink" title="tomcat server.xml配置说明"></a>tomcat server.xml配置说明</h1><img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200312091604.png" style="zoom:200%;" /><ul><li><p>server.xml描述了如何启动Tomcat Server</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Server</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Listener</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">GlobaNamingResources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">GlobaNamingResources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Service</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Connector</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Engine</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Logger</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Realm</span> /&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">host</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">Logger</span> /&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">Context</span> /&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Engine</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Service</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Server</span>&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>参数说明：</p><img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200312092234.png" style="zoom:200%;" /></li></ul><h1 id="修改配置，增加固件文件夹"><a href="#修改配置，增加固件文件夹" class="headerlink" title="修改配置，增加固件文件夹"></a>修改配置，增加固件文件夹</h1><ul><li><p>新建固件文件夹fw</p><img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200312094524.png" style="zoom:200%;" /></li><li><p>修改server.xml，使fw可以被访问</p><img src="https://cdn.jsdelivr.net/gh/echomlv/kangimages/imgs/20200312093806.png" style="zoom:200%;" /></li><li><p>新增index.xml，helloworld</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world~~<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></li></ul><h1 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h1><blockquote><p><a href="https://www.cnblogs.com/f-ck-need-u/p/8120008.html">https://www.cnblogs.com/f-ck-need-u/p/8120008.html</a><br><a href="https://blog.csdn.net/zcyhappy1314/article/details/10356909">https://blog.csdn.net/zcyhappy1314/article/details/10356909</a></p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在嵌入式软件升级中，一般可以选择通过http来下载固件，tomcat是一种方式，&lt;br&gt;可以用来搭建web服务器，用于OTA的升级调试，而无需去了解其他比较复杂web服务器的配置。&lt;/p&gt;
-&lt;h1 id=&quot;修改登陆用户名密码&quot;&gt;&lt;a href=&quot;#修改登陆用户名密码&quot; cl</summary>
-      
-    
-    
-    
-    <category term="开发环境" scheme="https://blog.littlekang.xyz/categories/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
-    
-    
-    <category term="ota" scheme="https://blog.littlekang.xyz/tags/ota/"/>
-    
-    <category term="http" scheme="https://blog.littlekang.xyz/tags/http/"/>
     
   </entry>
   
