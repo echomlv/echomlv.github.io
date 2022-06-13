@@ -561,9 +561,9 @@
       
         <tags>
             
-            <tag> openwrt </tag>
-            
             <tag> u-boot </tag>
+            
+            <tag> openwrt </tag>
             
         </tags>
       
