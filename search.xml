@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>omnipeek抓包学习笔记(1)</title>
+      <link href="/article/47298/"/>
+      <url>/article/47298/</url>
+      
+        <content type="html"><![CDATA[<p>最近在学习Wi-Fi相关的东西，就涉及到了解底层的一些流程，认为做好的学习方式就是抓包分析了，所以又找出了吃灰很久的usb无线网卡，学习如何空口抓包。</p><span id="more"></span><h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">win11 专业工作站版</span><br><span class="line"> </span><br><span class="line">Omnipeek.Enterprise.11.1</span><br><span class="line"> </span><br><span class="line">TOTOLINK N500UA + 专用驱动程序</span><br></pre></td></tr></table></figure><p>驱动程序的安装注意事项：</p><p><img src="https://nas.littlekang.xyz:9000/markdown/2023-04/2514_2359-7ifuetA1BtMa4cpK.png" alt="image-20230425142359210"></p><h1 id="抓包配置"><a href="#抓包配置" class="headerlink" title="抓包配置"></a>抓包配置</h1><p>选择网卡：</p><p><img src="https://nas.littlekang.xyz:9000/markdown/2023-04/2514_2601-Zr3Da4qDx8pFRTDY.png" alt="image-20230425142601395"></p><p>配置密钥：</p><p><img src="https://nas.littlekang.xyz:9000/markdown/2023-04/2514_2806-hhEr0qVImRRwX4j8.png" alt="image-20230425142806064"></p><p><img src="https://nas.littlekang.xyz:9000/markdown/2023-04/2514_2927-fcmx8k6B8PK0Y3CB.png" alt="image-20230425142926862"></p><p>对于SSID有中文的，直接输入omnipeek无法正确生成key，可以在ubuntu中通过<code>wpa_passphrase [ssid] [passwd]</code>得到：</p><img src="https://nas.littlekang.xyz:9000/markdown/2023-04/2514_3315-4BYudn5Jb4F6iRc6.png" alt="image-20230425143315103" style="zoom:150%;" /> <h1 id="如何保证能够成功解密数据"><a href="#如何保证能够成功解密数据" class="headerlink" title="如何保证能够成功解密数据"></a>如何保证能够成功解密数据</h1><ul><li>Omnipeek开始抓包后，设备才开始连接路由器。</li><li>需要保证抓到路由器与STA设备之间的密钥协商的四次握手过程，才能完成解密。</li></ul><p><img src="https://nas.littlekang.xyz:9000/markdown/2023-04/2514_4156-2c4aGHBc5bEFuado.png" alt="image-20230425144156074"></p><p>解密成功后可以看到应用层的包：</p><img src="https://nas.littlekang.xyz:9000/markdown/2023-04/2514_4901-DAPsQnkAcEHIvwzi.png" alt="image-20230425144901506" style="zoom:150%;" />]]></content>
+      
+      
+      <categories>
+          
+          <category> 开发环境 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> sniffer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>硬件学习笔记-HDMI CEC</title>
       <link href="/article/28147/"/>
       <url>/article/28147/</url>
